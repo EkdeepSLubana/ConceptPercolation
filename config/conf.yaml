@@ -1,0 +1,75 @@
+deploy: True
+tag: scratch
+seed: 2
+
+device: "cuda:2"
+bf16: True
+epochs: 1
+
+data:
+  n_relative_properties: 100
+  n_descriptive_properties: 460
+  n_descriptive_values: 40
+  n_entities: 100
+  num_of_classes_to_divide_over: 10
+  prior_param: 0.1
+  props_prior_type: 'structured_zeros'
+  instr_ratio: 0.8
+  max_sample_length: 128
+  num_iters: 1e6
+  batch_size: 128 
+  num_workers: 4
+
+model:
+  compile: False
+  context_size: 256
+  n_layer: 2
+  n_head: 2
+  n_embd: 128
+  dropout: 0.0
+  bias: False
+  mlp: True
+
+optimizer:
+  learning_rate: 1e-3
+  weight_decay: 1e-4
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  train_iters: 1e5
+  decay_lr: True
+  warmup_iters: 200
+  min_lr: 1e-3
+
+eval:
+  save_tables: False
+  grammar: True
+  llhood: True
+  reachable_pairs: True
+  unscramble: True
+  cond_gen: False
+
+log: 
+  log_interval: 10
+  eval_interval: 100
+  save_multiple: False
+  save_interval: 1000
+
+
+# Nested configs. Disable hydra logging
+defaults:
+  - _self_
+  - override hydra/job_logging: disabled
+  - override hydra/hydra_logging: disabled
+
+# Disable hydra directory structure
+hydra:
+  output_subdir: Null
+  job:
+    chdir: False
+  run:
+    dir: .
+
+  sweep:
+    dir: .
+    subdir: .
