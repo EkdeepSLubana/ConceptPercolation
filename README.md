@@ -1,6 +1,6 @@
 # A Percolation Model of Emergence
 
-Codebase for the paper ["A Percolation Model of Emergence: Analyzing Transformers Trained on a Formal Language"][https://arxiv.org/abs/2408.12578]
+Codebase for the paper ["A Percolation Model of Emergence: Analyzing Transformers Trained on a Formal Language"](https://arxiv.org/abs/2408.12578)
 
 
 ## Requirements 
